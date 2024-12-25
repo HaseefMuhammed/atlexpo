@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ATL@PMSA</title>
+  <link rel="icon" href="images/tab.png" type="image/logo">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="bootstrap.css">
+  <link rel="stylesheet" href="https://haseefmuhammed.github.io/Haseef-Swift/haseef-swift-og.css">
+  <style>
+    /* slider */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.main-body{
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+}
+
+.slider {
+  width: 80%;
+  max-width: 800px;
+  margin: 20px auto;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.slides {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+  min-width: 100%;
+  box-sizing: border-box;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+/* Navigation Buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 20%;
+  width: auto;
+  margin-top: -30px;
+  padding: 16px;
+  color: black;
+  font-weight: bold;
+  font-size: 20px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+}
+
+.prev {
+  left: 0;
+}
+
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0, 0, 0, 0.562);
+}
+  </style>
+</head>
+<body>
+  <div class="hs-accessibility"></div>
+  <header>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#"><img class="logo" src="images/tab.png" alt=""></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mx-5 mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="result.html">Result</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="admin.html">Admin</a>
+            </li>
+        </div>
+      </div>
+    </nav>
+  </header>
+<div class="p-4"></div>
+  <div class="main-body">
+    <div class="slider">
+        <div class="slides">
+            <div class="slide"><img src="images/b1.png" alt="Image 1"></div>
+            <div class="slide"><img src="images/b2.png" alt="Image 2"></div>
+            <div class="slide"><img src="images/b3.png" alt="Image 3"></div>
+            <div class="slide"><img src="images/b4.png" alt="Image 3"></div>
+            <!-- Add more slides as needed with actual image URLs or paths -->
+        </div>
+        <div class="prev" onclick="prevSlide()">&#10094;</div>
+        <div class="next" onclick="nextSlide()">&#10095;</div>
+    </div>
+</div>
+<br>
+<br>
+  
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 p-2">
+        <a class="linking" href="#"><div class="item-home text-center">
+          <i class="fa-solid fa-user"></i>
+          <p>Registar student</p>
+        </div></a>
+      </div>
+      <div class="col-md-4 p-2">
+        <a class="linking" href="result.html"><div class="item-home text-center">
+          <i class="fa-solid fa-square-poll-vertical"></i>
+          <p>check results</p>
+        </div></a>
+      </div>
+      <div class="col-md-4 p-2">
+        <a class="linking" href="#"><div class="item-home text-center">
+          <i class="fa-solid fa-share-from-square"></i>
+          <p>social media</p>
+        </div></a>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 p-2">
+        <a class="linking" href="schedule.html"><div class="item-home text-center">
+          <i class="fa-solid fa-calendar-days"></i>
+          <p>program schedule</p>
+        </div></a>
+      </div>
+      <div class="col-md-4 p-2">
+        <a class="linking" href="#"><div class="item-home text-center">
+          <i class="fa-solid fa-newspaper"></i>
+          <p>blog</p>
+        </div></a>
+      </div>
+      <div class="col-md-4 p-2">
+        <a class="linking" href="#"><div class="item-home text-center">
+          <i class="fa-solid fa-phone"></i>
+          <p>contact us</p>
+        </div></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-dark">
+  <p>All rights received from ATL@PMSA <br> &copy 2024 <br> Developed and Managed by <a href="http://www.webcraaft.42web.io" target="_blank">Web Craft</a> & <a href="https://haseef-ws.netlify.app" target="_blank">Haseef Muhammed PC</a></p>
+</footer>
+
+  <script src="bootstrap.js"></script>
+  <script src="https://kit.fontawesome.com/3945bc0b8d.js" crossorigin="anonymous"></script>
+  <script src="script.js"></script>
+  <script src="https://haseefmuhammed.github.io/Haseef-Swift/haseef-swift-og.js"></script>
+  <script>
+    let currentIndex = 0;
+const slideInterval = 3000; // Set the interval in milliseconds (3 seconds in this case)
+let intervalId;
+
+function showSlide(index) {
+    const slides = document.querySelector('.slides');
+    const totalSlides = document.querySelectorAll('.slide').length;
+
+    if (index < 0) {
+        currentIndex = totalSlides - 1;
+    } else if (index >= totalSlides) {
+        currentIndex = 0;
+    } else {
+        currentIndex = index;
+    }
+
+    const translateValue = -currentIndex * 100 + '%';
+    slides.style.transition = 'transform 0.5s ease-in-out';
+    slides.style.transform = 'translateX(' + translateValue + ')';
+}
+
+function prevSlide() {
+    showSlide(currentIndex - 1);
+}
+
+function nextSlide() {
+    showSlide(currentIndex + 1);
+}
+
+function startAutoSlide() {
+    intervalId = setInterval(nextSlide, slideInterval);
+}
+
+function stopAutoSlide() {
+    clearInterval(intervalId);
+}
+
+// Start auto sliding when the page loads
+startAutoSlide();
+
+// Pause auto sliding when the user interacts with the slider
+document.querySelector('.slider').addEventListener('mouseenter', stopAutoSlide);
+document.querySelector('.slider').addEventListener('mouseleave', startAutoSlide);
+
+function show() {
+  var input=document.getElementById("search").value;
+
+  if(input=="cup"){
+    alert("Choose from products section")
+  }else{
+    alert("No result found")
+  }
+}
+
+console("Your using webcraft ");
+  </script>
+  </script>
+</body>
+</html>
