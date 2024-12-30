@@ -14,6 +14,5 @@ function loginAdmin() {
       window.location.href = "result.html"; // Corrected filename
   } else {
       alert("Invalid username or password");
-      window.location.reload();
   }
 }
