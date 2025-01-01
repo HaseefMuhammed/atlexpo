@@ -12,7 +12,10 @@ function loginAdmin() {
       window.location.href = "dash-officials.html";
   } else if (username === "admina" && password === "v58s") {
       window.location.href = "dash-admins.html"; // Corrected filename
-  } else {
+  }else if (username === "adminl"  && password === "h30i"){
+    window.location.href = "dash-leaders.html";
+  }
+   else {
       alert("Invalid username or password");
   }
 }
