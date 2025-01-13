@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ATL@PMSA</title>
+  <link rel="icon" href="images/tab.png" type="image/logo">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="bootstrap.css">
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#"><img class="logo" src="images/tab.png" alt=""></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mx-5 mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link " aria-current="page" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="result.html">Result</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="admin.html">Admin</a>
+            </li>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <section class="head-banner">
+    <h1>result</h1>
+  </section>
+  
+  <section>
+    <div class="container mt-3">
+       <!-- Download Button -->
+    <div class="download-btn">
+      <button class="btn btn-dark m-5" onclick="printResults()">Download Results</button>
+    </div>
+
+    <!-- Results Table -->
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover table-striped">
+        <thead class="table-dark">
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Event</th>
+            <th>Prize</th>
+          </tr>
+        </thead>
+        <tbody id="results">
+          <!-- Dynamic rows will be inserted here -->
+        </tbody>
+      </table>
+    </div>
+      </div>
+  </section>
+
+  <footer class="bg-dark">
+    <p>All rights received from ATL@PMSA <br> &copy 2024 <br> Developed and Managed by <a href="http://www.webcraaft.42web.io" target="_blank">Web Craft</a> & <a href="https://haseef-ws.netlify.app" target="_blank">Haseef Muhammed PC</a></p>
+  </footer>
+
+
+  <!-- Result fetch -->
+
+  <script>
+    // Replace with your Google Sheet's published CSV link
+    const googleSheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRzdYD2X3ook-mbjoqwGmZZHxDzhy3dKtAvndRxpqvvgcVCY0HUk70HE-mba8LCR1sGYkyttMF9C6vv/pub?output=csv';
+
+    async function fetchResults() {
+      try {
+        // Fetch the CSV data
+        const response = await fetch(googleSheetURL);
+        const csvData = await response.text();
+
+        // Parse the CSV data
+        const rows = csvData.split('\n').map(row => row.split(','));
+
+        // Extract headers and rows
+        const headers = rows[0];
+        const data = rows.slice(1);
+
+        // Display results in table
+        const resultsContainer = document.getElementById('results');
+        data.forEach((row, index) => {
+          const rowHTML = `
+            <tr>
+              <td>${index + 1}</td>
+              <td>${row[0]}</td>
+              <td>${row[1]}</td>
+              <td>${row[2]}</td>
+            </tr>
+          `;
+          resultsContainer.innerHTML += rowHTML;
+        });
+      } catch (error) {
+        console.error('Error fetching results:', error);
+        document.getElementById('results').innerHTML = `<tr><td colspan="8">Failed to load results. Please try again later.</td></tr>`;
+      }
+    }
+
+    // Print Results Function
+    function printResults() {
+      window.print();
+    }
+
+    // Fetch and display results on page load
+    fetchResults();
+  </script>
+  <script src="bootstrap.js"></script>
+  <script src="https://kit.fontawesome.com/3945bc0b8d.js" crossorigin="anonymous"></script>
+  <script src="script.js"></script>
+</body>
+</html>

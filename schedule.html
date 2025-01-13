@@ -19,10 +19,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto mx-5 mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link " aria-current="page" href="index.html">Home</a>
+              <a class="nav-link active" aria-current="page" href="index.html">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="result.html">Result</a>
+              <a class="nav-link " href="result.html">Result</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="admin.html">Admin</a>
@@ -38,33 +38,28 @@
   
   <section>
     <div class="container mt-3">
-      <table class="table table-striped">
-        <thead>
+       <!-- Download Button -->
+    <div class="download-btn">
+      <button class="btn btn-dark m-5" onclick="printResults()">Download Schedule</button>
+    </div>
+
+    <!-- Results Table -->
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover table-striped">
+        <thead class="table-dark">
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">Program</th>
-            <th scope="col">Date</th>
-            <th scope="col">Time</th>
-            <th scope="col">Status</th>
+            <th>#</th>
+            <th>Program</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Status</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Quiz</td>
-            <td>24-12-2024</td>
-            <td>11:38 - 12:38</td>
-            <td>Done</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Expo</td>
-            <td>24-12-2024</td>
-            <td>11:38 - 12:38</td>
-            <td>Canceled</td>
-          </tr>
+        <tbody id="results">
+          <!-- Dynamic rows will be inserted here -->
         </tbody>
       </table>
+    </div>
       </div>
   </section>
 
@@ -73,6 +68,53 @@
   </footer>
 
 
+  <!-- Result fetch -->
+
+  <script>
+    // Replace with your Google Sheet's published CSV link
+    const googleSheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTGsd3NbFuBaM6Jq1U0Bqad41JZsgPgVvO1g2bln6pbRI3v4L8dK2Yi89CuhJUPw7y5HBARebNAmMX5/pub?output=csv';
+
+    async function fetchResults() {
+      try {
+        // Fetch the CSV data
+        const response = await fetch(googleSheetURL);
+        const csvData = await response.text();
+
+        // Parse the CSV data
+        const rows = csvData.split('\n').map(row => row.split(','));
+
+        // Extract headers and rows
+        const headers = rows[0];
+        const data = rows.slice(1);
+
+        // Display results in table
+        const resultsContainer = document.getElementById('results');
+        data.forEach((row, index) => {
+          const rowHTML = `
+            <tr>
+              <td>${index + 1}</td>
+              <td>${row[0]}</td>
+              <td>${row[1]}</td>
+              <td>${row[2]}</td>
+              <td>${row[3]}</td>
+            </tr>
+          `;
+          resultsContainer.innerHTML += rowHTML;
+        });
+      } catch (error) {
+        console.error('Error fetching results:', error);
+        document.getElementById('results').innerHTML = `<tr><td colspan="8">Failed to load results. Please try again later.</td></tr>`;
+      }
+    }
+
+    // Print Results Function
+    function printResults() {
+      window.print();
+    }
+
+    // Fetch and display results on page load
+    fetchResults();
+  </script>
   <script src="bootstrap.js"></script>
   <script src="https://kit.fontawesome.com/3945bc0b8d.js" crossorigin="anonymous"></script>
   <script src="script.js"></script>
